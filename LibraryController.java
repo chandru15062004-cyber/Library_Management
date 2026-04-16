@@ -20,33 +20,32 @@ public class LibraryController {
 
 	public LibraryController(ServiceLibrary ServiceLibrary) {
 		this.ServiceLibrary=ServiceLibrary;
-	}
+	}            //->Contructor
 
 	@GetMapping
 	public List<LibraryManagement> getLibrary() {
 		return ServiceLibrary.getAllBooks();
-	}
+	}   		//->To get entire data at a time
 
 	@GetMapping("/{id}")
 	public LibraryManagement getById(@PathVariable Long id) {
 		return ServiceLibrary.getBookById(id);
-	}
+	}			//->To get sprcifice data by giving specific ID
 
 	@PostMapping
 	public LibraryManagement save(@RequestBody LibraryManagement Library) {
 		return ServiceLibrary.saveBookDetail(Library);
-	}
+	}			//->To create new resource
 	
 	@PutMapping("/{id}")
 	public LibraryManagement update(@PathVariable Long id, @RequestBody LibraryManagement Library) {
 		return ServiceLibrary.updateBookDetails(id, Library);
-	}
+	}			//->To update specifce resuorce  by giving ID
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable Long id) {
 		ServiceLibrary.deleteBook(id);
 		return "Book was deleted succesfully from the Library"; 
-				
-	}
+	}			//->To delete resource
 
 }
 
